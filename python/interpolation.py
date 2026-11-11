@@ -1,4 +1,4 @@
-"""Gemeinsame Funktionen für Programmierprojekt 2 (entspricht den .m-Dateien in matlab/)."""
+"""Gemeinsame Funktionen für Programmierprojekt 2."""
 from pathlib import Path
 
 import matplotlib
@@ -72,7 +72,7 @@ def lebesgue_konstante(x, w, E):
 
 
 def experiment(datei, E, T_E):
-    """Rechnet für einen Stützstellensatz alle n = 2..40 durch (wie matlab/experiment.m)."""
+    """Rechnet für einen Stützstellensatz alle n = 2..40 durch."""
     M = lese_tabelle(datei)
     R = {k: np.zeros(len(NS)) for k in ("e_vander", "e_baryz", "kappa", "e_interp", "e_daten",
                                         "lebesgue", "koeff_rel", "e_koeff", "residuum")}
