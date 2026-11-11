@@ -10,7 +10,7 @@ Zwei gleichwertige Umsetzungen: MATLAB (R2026a, keine Toolboxen) und Python (Num
 ```matlab
 aufgabe1   % Vandermonde und baryzentrisch, äquidistant
 aufgabe2   % dasselbe mit Tschebyscheff-Stützstellen
-aufgabe3   % Fehlerzerlegung 3a, 3b, 3c und Zusatz zur Anmerkung
+aufgabe3   % Fehlerzerlegung 3a, 3b, 3c
 ```
 
 **Python** (einmalig `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`), im Ordner `python/`:
@@ -19,7 +19,6 @@ aufgabe3   % Fehlerzerlegung 3a, 3b, 3c und Zusatz zur Anmerkung
 ../.venv/bin/python aufgabe1.py
 ../.venv/bin/python aufgabe2.py
 ../.venv/bin/python aufgabe3.py
-../.venv/bin/python zusatz_hochgenau.py   # optional, Kontrollen mit 120 Stellen
 ```
 
 Die Plots landen in `plots/matlab/` bzw. `plots/python/`.
@@ -30,13 +29,12 @@ Die Plots landen in `plots/matlab/` bzw. `plots/python/`.
 |---|---|---|
 | `aufgabe1.m` | `aufgabe1.py` | 1a, 1b, Abweichung für n = 20 |
 | `aufgabe2.m` | `aufgabe2.py` | Tschebyscheff, gemeinsamer Plot |
-| `aufgabe3.m` | `aufgabe3.py` | 3a, 3b, 3c, Zusatz zur Anmerkung |
+| `aufgabe3.m` | `aufgabe3.py` | 3a, 3b, 3c |
 | `experiment.m` | `interpolation.py` | Rechnet alle n = 2…40 für einen Stützstellensatz durch |
 | `vandermonde_matrix.m`, `horner.m` | `interpolation.py` | Monombasis |
 | `baryz_gewichte.m`, `baryz_auswerten.m` | `interpolation.py` | Baryzentrische Formel |
 | `lebesgue_konstante.m` | `interpolation.py` | Λₙ(X) = max Σ\|ℓⱼ\| über dem Prüfraster |
 | `lese_stuetzwerte.m`, `speichere_plot.m`, `farben.m`, `log_achse.m` | `interpolation.py` | Hilfsfunktionen |
-| – | `zusatz_hochgenau.py` | Kontrollen mit NIST-Formel und 120 Stellen (nicht Teil der Aufgabe) |
 
 ## Ergebnisse
 

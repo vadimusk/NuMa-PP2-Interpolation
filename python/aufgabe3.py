@@ -101,26 +101,3 @@ print(f"    e_koeff / (1e-16 * kappa) bei n = 20: {Rt['e_koeff'][18] / (1e-16 * 
 g = n >= 10
 print("    Kontrolle e_koeff <= Lambda * Residuum (n >= 10): größtes Verhältnis "
       f"{np.max(Rt['e_koeff'][g] / (Rt['lebesgue'][g] * Rt['residuum'][g])):.2f}")
-
-# Zusatz zur Anmerkung: dieselbe Rechnung einmal in mV und einmal mit x skaliert auf [-1, 1]
-M = lese_tabelle("stuetzwerte_aequidistant.csv")
-b = M[:, 2].max()
-e_skaliert = np.zeros(len(n))
-for k, m in enumerate(n):
-    x, _, T_kal = stuetzwerte(M, m)
-    a = np.linalg.solve(vandermonde_matrix(2 * x / b - 1), T_kal)
-    e_skaliert[k] = np.max(np.abs(horner(a, 2 * E / b - 1) - T_E))
-
-fig, ax = plt.subplots(figsize=(7.3, 4.4))
-ax.plot(n, Ra["e_baryz"], "s-", color=BARYZ, label="baryzentrisch")
-ax.plot(n, Ra["e_vander"], "o-", color=VANDER, label="Vandermonde in mV")
-ax.plot(n, e_skaliert, "^", color=INTERP, markerfacecolor="none", markersize=6, label="Vandermonde skaliert auf [-1, 1]")
-ax.plot(n, np.where(Ra["residuum"] > 0, Ra["residuum"], np.nan), "d-", color=NEUTRAL, linewidth=1, markersize=3, label=r"Residuum $|p(x_i) - y_i|$ (Rechnung in mV)")
-log_achse(ax, "Anmerkung: äquidistante Stützstellen")
-ax.legend(loc="upper left")
-speichere_plot(fig, "anmerkung_aequidistant.png")
-
-print("\nAnmerkung)  n   baryz       Vander mV   Vander skal.  Residuum mV")
-for m in (15, 20, 25, 30, 35, 40):
-    k = m - 2
-    print(f"           {m:2d}   {Ra['e_baryz'][k]:9.2e}   {Ra['e_vander'][k]:9.2e}   {e_skaliert[k]:9.2e}     {Ra['residuum'][k]:9.2e}")
